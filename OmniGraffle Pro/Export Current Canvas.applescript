@@ -1,12 +1,13 @@
 (*
  * Export Current Canvas as PDF
  * a script for OmniGraffle
- * Copyright (C) 2009 by Takuo Watanabe
+ * Copyright (C) 2009,2010,2011,2012 by Takuo Watanabe
  *)
 
 property fileExt : ".pdf"
 property useDocName : true
 property docNameSep : "_"
+property generateBB : true
 
 on run
 	tell application "OmniGraffle Professional 5"
@@ -17,6 +18,9 @@ on run
 		set cname to name of canvas of first window as text
 		set ofile to (ofolder & prefix & cname & fileExt) as POSIX file as text
 		save doc in file ofile
+		if generateBB then
+			tell me to do shell script ("ebb " & (POSIX path of ofile))
+		end if
 	end tell
 end run
 
