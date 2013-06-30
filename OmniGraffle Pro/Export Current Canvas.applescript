@@ -19,7 +19,7 @@ on run
 		set ofile to (ofolder & prefix & cname & fileExt) as POSIX file as text
 		save doc in file ofile
 		if generateBB then
-			tell me to do shell script ("ebb " & (POSIX path of ofile))
+			tell me to do shell script ("/usr/texbin/extractbb " & (POSIX path of ofile))
 		end if
 	end tell
 end run
