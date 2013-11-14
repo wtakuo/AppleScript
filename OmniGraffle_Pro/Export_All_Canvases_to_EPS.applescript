@@ -1,13 +1,14 @@
 (*
- * Export All Canvases as PDF
+ * Export All Canvases to EPS
  * a script for OmniGraffle
- * Copyright (C) 2009,2010,2011,2012 by Takuo Watanabe
+ * Copyright (C) 2009,2010,2011,2012,2013 by Takuo Watanabe
  *)
 
-property fileExt : ".pdf"
+property fileExt : ".eps"
 property useDocName : true
 property docNameSep : "_"
-property generateBB : true
+property generateBB : false
+property extractbb: "/usr/texbin/extractbb"
 
 on run
 	tell application "OmniGraffle Professional 5"
@@ -22,7 +23,7 @@ on run
 			set canvas of first window to cvs
 			save doc in file ofile
 			if generateBB then
-				tell me to do shell script ("/usr/texbin/extractbb " & (POSIX path of ofile))
+				tell me to do shell script (extractbb & " " & (POSIX path of ofile))
 			end if
 		end repeat
 		set canvas of first window to currentCanvas
