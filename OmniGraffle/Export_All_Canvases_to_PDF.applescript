@@ -1,17 +1,17 @@
 (*
  * Export All Canvases to PDF
  * a script for OmniGraffle
- * Copyright (C) 2009,2010,2011,2012,2013 by Takuo Watanabe
+ * Copyright (C) 2009,2010,2011,2012,2013,2014 by Takuo Watanabe
  *)
 
 property fileExt : ".pdf"
 property useDocName : true
 property docNameSep : "_"
 property generateBB : true
-property extractbb: "/usr/texbin/extractbb"
+property extractbb : "/usr/texbin/extractbb"
 
 on run
-	tell application "OmniGraffle Professional 5"
+	tell application "OmniGraffle"
 		set currentCanvas to canvas of first window
 		set doc to first document
 		set dpath to path of doc as POSIX file as alias
